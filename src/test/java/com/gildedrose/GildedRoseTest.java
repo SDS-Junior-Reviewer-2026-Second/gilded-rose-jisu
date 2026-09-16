@@ -9,24 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GildedRoseTest {
 
-	GildedRose gildedRose;
-
-	@BeforeEach
-	public void setup(){
-		Item[] items = new Item[]{
-				new Item("naname", 0, 0),
-				new Item("something", 1, 10),
-				new Item("anotherthing", 0, 10),
-				new Item("Aged Brie", 10, 25),
-				new Item("Aged Brie", -10, 35),
-				new Item("Aged Brie", -10, 50),
-				new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10),
-				new Item("Backstage passes to a TAFKAL80ETC concert", 0, 45),
-				new Item("Sulfuras, Hand of Ragnaros", 80, 80)
-		};
-		gildedRose = new GildedRose(items);
-	}
-
 	@Test
 	public void normalItemZeroValue(){
 		Item[] items = new Item[]{
@@ -162,7 +144,7 @@ public class GildedRoseTest {
 	@Test
 	public void legendaryItem(){
 		Item[] items = new Item[]{
-				new Item("Backstage passes to a TAFKAL80ETC concert", 1, 80)
+				new Item("Sulfuras, Hand of Ragnaros", 1, 80)
 		};
 		GildedRose gildedRose = new GildedRose(items);
 
