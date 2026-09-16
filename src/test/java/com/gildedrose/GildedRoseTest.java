@@ -94,6 +94,18 @@ public class GildedRoseTest {
 	}
 
 	@Test
+	public void ticketSellInOverTenDaysMaxQuality(){
+		Item[] items = new Item[]{
+				new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50)
+		};
+		GildedRose gildedRose = new GildedRose(items);
+
+		gildedRose.updateQuality();
+		assertEquals(50, items[0].quality);
+		assertEquals(10, items[0].sellIn);
+	}
+
+	@Test
 	public void ticketSellInBetweenSixToTenDaysNotMaxQuality(){
 		Item[] items = new Item[]{
 				new Item("Backstage passes to a TAFKAL80ETC concert", 10, 10)
@@ -102,6 +114,18 @@ public class GildedRoseTest {
 
 		gildedRose.updateQuality();
 		assertEquals(12, items[0].quality);
+		assertEquals(9, items[0].sellIn);
+	}
+
+	@Test
+	public void ticketSellInBetweenSixToTenDaysMaxQuality(){
+		Item[] items = new Item[]{
+				new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49)
+		};
+		GildedRose gildedRose = new GildedRose(items);
+
+		gildedRose.updateQuality();
+		assertEquals(50, items[0].quality);
 		assertEquals(9, items[0].sellIn);
 	}
 
@@ -118,6 +142,18 @@ public class GildedRoseTest {
 	}
 
 	@Test
+	public void ticketSellInBetweenOneToFiveDaysMaxQuality(){
+		Item[] items = new Item[]{
+				new Item("Backstage passes to a TAFKAL80ETC concert", 5, 48)
+		};
+		GildedRose gildedRose = new GildedRose(items);
+
+		gildedRose.updateQuality();
+		assertEquals(50, items[0].quality);
+		assertEquals(4, items[0].sellIn);
+	}
+
+	@Test
 	public void ticketZeroSellIn(){
 		Item[] items = new Item[]{
 				new Item("Backstage passes to a TAFKAL80ETC concert", 0, 45)
@@ -130,19 +166,7 @@ public class GildedRoseTest {
 	}
 
 	@Test
-	public void ticketMaxQuality(){
-		Item[] items = new Item[]{
-				new Item("Backstage passes to a TAFKAL80ETC concert", 1, 50)
-		};
-		GildedRose gildedRose = new GildedRose(items);
-
-		gildedRose.updateQuality();
-		assertEquals(50, items[0].quality);
-		assertEquals(0, items[0].sellIn);
-	}
-
-	@Test
-	public void legendaryItem(){
+	public void sulfurasPositiveSellIn(){
 		Item[] items = new Item[]{
 				new Item("Sulfuras, Hand of Ragnaros", 1, 80)
 		};
@@ -151,6 +175,18 @@ public class GildedRoseTest {
 		gildedRose.updateQuality();
 		assertEquals(80, items[0].quality);
 		assertEquals(1, items[0].sellIn);
+	}
+
+	@Test
+	public void sulfurasNegativeSellIn(){
+		Item[] items = new Item[]{
+				new Item("Sulfuras, Hand of Ragnaros", -1, 80)
+		};
+		GildedRose gildedRose = new GildedRose(items);
+
+		gildedRose.updateQuality();
+		assertEquals(80, items[0].quality);
+		assertEquals(-1, items[0].sellIn);
 	}
 
 }
